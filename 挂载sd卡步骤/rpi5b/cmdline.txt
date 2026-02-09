@@ -1,0 +1,6 @@
+
+# 使用rpi5b的3pin串口线
+console=serial0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 quiet fsck.repair=yes init=/linuxrc rootwait
+
+# 使用rpi5b的GPIO14/GPIO15s
+console=ttyAMA0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 quiet fsck.repair=yes init=/linuxrc rootwait

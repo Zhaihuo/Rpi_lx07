@@ -1,0 +1,43 @@
+[all]
+# ===================== 核心I2C0配置（解决8bit读取关键）=====================
+# 1. 启用I2C0并释放复用（保留你的原有配置，补充关键参数）
+dtparam=i2c0=on                    # 启用I2C0总线
+dtparam=i2c0_baudrate=400000       # 关键：I2C0设为400KHz快速模式（匹配传感器时序）
+dtoverlay=i2c0,nocombine           # 关键：禁用7bit地址解析，强制8bit数据传输
+dtoverlay=i2c0,pullup=on           # 关键：启用I2C0引脚内部上拉（增强驱动能力）
+dtparam=i2c_arm=on                 # 兼容I2C1（若不用可注释）
+dtparam=eeprom=off                 # 关闭eeprom避免占用I2C0
+
+# 2. 释放I2C0引脚复用（保留你的配置，确认生效）
+dtoverlay=disable-csi              # 释放CSI占用的I2C0引脚
+dtoverlay=disable-dsi              # 释放DSI占用的I2C0引脚
+dtoverlay=disable-bt               # 禁用蓝牙，释放UART/I2C0复用
+enable_uart=1                      # 仅保留UART功能（不冲突）
+
+# ===================== 显示驱动（保留，无冲突）=====================
+dtoverlay=vc4-fkms-v3d
+max_framebuffers=2
+# enable_fw_kms_setup=1  # 保持注释：避免抢占GPIO
+
+# ===================== GPIO配置（增强稳定性）=====================
+dtparam=gpio=on
+gpio=0=pu,1=pu                     # 关键：给I2C0的SDA0(BCM0)/SCL0(BCM1)强制上拉
+# gpio=12=pu  # 触摸屏中断脚（根据实际硬件调整）
+
+# ===================== 基础系统配置（保留）=====================
+arm_64bit=1
+disable_overscan=1
+arm_boost=1
+kernel=kernel8.img
+core_freq=250
+
+# ===================== 屏幕时序（保留）=====================
+hdmi_ignore_edid=0xa5000080
+hdmi_group=2
+hdmi_mode=87
+hdmi_timings=1280 0 64 32 32 412 0 38 8 8 0 0 0 60 0 39370000 3 0 0 0
+hdmi_force_hotplug=1
+hdmi_drive=2
+
+[cm4]
+otg_mode=1

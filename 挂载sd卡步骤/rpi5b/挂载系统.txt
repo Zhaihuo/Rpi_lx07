@@ -1,0 +1,102 @@
+
+#复制文件到U盘
+cp /home/wenlun/rpi5b/xp-touchscreen/ /media/wenlun/U330/driver/rpi5b -r &&
+cp /home/wenlun/qt/xp-touchscreen/ /media/wenlun/U330/driver/qt -r &&
+cp /home/wenlun/qt/renault/ /media/wenlun/U330/driver/qt -r &&
+cp /home/wenlun/qt/platform_device/ /media/wenlun/U330/driver/qt -r
+
+#解压U盘文件
+cd /media/wenlun/U330/driver/rpi5b                &&
+tar -cvf ./xp-touchscreen.tar ./xp-touchscreen/   &&
+cd /media/wenlun/U330/driver/qt                   &&
+tar -cvf ./xp-touchscreen.tar  ./xp-touchscreen/  &&
+tar -cvf ./renault.tar         ./renault/         &&
+tar -cvf ./platform_device.tar ./platform_device/
+
+#编译触摸驱动
+cd /media/wenlun/U330/driver/rpi5b/xp-touchscreen/ && sudo /media/wenlun/U330/driver/rpi5b/xp-touchscreen/autobuild.sh && ls -l &&  //used
+cd /media/wenlun/U330/driver/qt/renault/           && sudo /media/wenlun/U330/driver/qt/renault/autobuild.sh           && ls -l &&
+cd /media/wenlun/U330/driver/qt/xp-touchscreen/    && sudo /media/wenlun/U330/driver/qt/xp-touchscreen/autobuild.sh    && ls -l
+
+#编译Qt显示，Arm平台
+#TouchAreaTest 和 TouchAreaTest_1.0 是同一个
+#'F57 Demo' 和 TouchAreaTest_4.0 是同一个
+cd /media/wenlun/U330/app/Prototype/'F57 Demo'/TouchAreaTest        && /media/wenlun/U330/app/Prototype/'F57 Demo'/TouchAreaTest/autobuild.sh        arm && ls -l ./build &&
+cd /media/wenlun/U330/app/Prototype/TouchAreaTest/                  && /media/wenlun/U330/app/Prototype/TouchAreaTest/autobuild.sh                   arm && ls -l ./build &&
+cd /media/wenlun/U330/app/Prototype/TouchAreaTest_1.0/TouchAreaTest && /media/wenlun/U330/app/Prototype/TouchAreaTest_1.0/TouchAreaTest/autobuild.sh arm && ls -l ./build &&    //used
+cd /media/wenlun/U330/app/Prototype/TouchAreaTest_4.0/TouchAreaTest && /media/wenlun/U330/app/Prototype/TouchAreaTest_4.0/TouchAreaTest/autobuild.sh arm && ls -l ./build
+
+编译Qt显示，X86平台
+cd /media/wenlun/U330/app/Prototype/'F57 Demo'/TouchAreaTest        && /media/wenlun/U330/app/Prototype/'F57 Demo'/TouchAreaTest/autobuild.sh        x86 && ls -l ./build &&
+cd /media/wenlun/U330/app/Prototype/TouchAreaTest/                  && /media/wenlun/U330/app/Prototype/TouchAreaTest/autobuild.sh                   x86 && ls -l ./build &&
+cd /media/wenlun/U330/app/Prototype/TouchAreaTest_1.0/TouchAreaTest && /media/wenlun/U330/app/Prototype/TouchAreaTest_1.0/TouchAreaTest/autobuild.sh x86 && ls -l ./build &&    //used
+cd /media/wenlun/U330/app/Prototype/TouchAreaTest_4.0/TouchAreaTest && /media/wenlun/U330/app/Prototype/TouchAreaTest_4.0/TouchAreaTest/autobuild.sh x86 && ls -l ./build
+
+#编译得到的Qt工程
+/media/wenlun/U330/app/Prototype/'F57 Demo'/TouchAreaTest/build/appTouchAreaTest
+/media/wenlun/U330/app/Prototype/TouchAreaTest/build/appTouchAreaTest
+/media/wenlun/U330/app/Prototype/TouchAreaTest_1.0/TouchAreaTest/build/appTouchAreaTest
+/media/wenlun/U330/app/Prototype/TouchAreaTest_4.0/TouchAreaTest/build/appTouchAreaTest
+
+cd /media/wenlun/U330/app/Prototype                   &&
+tar -cvf ./'F57 Demo'.tar        ./'F57 Demo'/        &&
+tar -cvf ./TouchAreaTest.tar     ./TouchAreaTest/     &&
+tar -cvf ./TouchAreaTest_1.0.tar ./TouchAreaTest_1.0/ &&
+tar -cvf ./TouchAreaTest_4.0.tar ./TouchAreaTest_4.0/
+
+rm 'F57 Demo'.tar        &&
+rm TouchAreaTest.tar     &&
+rm TouchAreaTest_1.0.tar &&
+rm TouchAreaTest_4.0.tar
+
+##############################################编译Rpi5b系统，挂载到SD卡##############################################
+#第1步：用官方工具下载Rpi5 64bit系统
+
+#第2步：删除rootfs和bootfs目录下的文件，
+先确定当前路径，pwd
+/media/wenlun/rootfs$ sudo rm * -rf     sudo rm -rf /media/wenlun/bootfs3/*
+/media/wenlun/bootfs$ sudo rm * -rf     sudo rm -rf /media/wenlun/rootfs/*
+
+sudo rm -rf /media/wenlun/bootfs3/* && sudo rm -rf /media/wenlun/rootfs/*
+
+#第3步：编译系统
+先确定识别的SD卡是不是sdb，ls /dev/sdb*，确认后开始编译系统
+cd rpi5b/
+sudo ./mk-system.sh
+
+#第4步：复制app.sh lx07 platform_device.ko文件到sd卡    首次复制
+sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/app.sh  /media/wenlun/rootfs/app  && sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/lx07 /media/wenlun/rootfs/app/lx07  && sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/platform_device.ko  /media/wenlun/rootfs/app
+sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/app.sh  /media/wenlun/rootfs1/app  && sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/lx07 /media/wenlun/rootfs1/app/lx07  && sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/platform_device.ko  /media/wenlun/rootfs1/app
+# 关键：执行后等待5-10秒再拔卡（SD卡写入速度慢，需等缓存刷完）
+sudo sync
+##############################################编译Rpi5b系统，挂载到SD卡##############################################
+
+
+
+##############################################串口通信，切换灰度值图片##############################################
+1.编译程序的uart.cpp中的串口接口替换为 ttyAMA0
+
+2.编译
+cd /home/wenlun/rpi5b/app/lx07_GrayLevel/E29_EOLTest && /home/wenlun/rpi5b/app/lx07_GrayLevel/E29_EOLTest/autobuild.sh x86 && ls -l ./build
+cd /home/wenlun/rpi5b/app/lx07_GrayLevel/E29_EOLTest && /home/wenlun/rpi5b/app/lx07_GrayLevel/E29_EOLTest/autobuild.sh arm && ls -l ./build
+
+3.复制生成的文件
+mv -iv appE29_EOLTest appTouchAreaTest && cp -r appTouchAreaTest ~/Desktop/bh_lx07/rpi5b/grayphoto/
+
+4.替换cmeline.txt
+console=serial0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 quiet fsck.repair=yes init=/linuxrc rootwait
+
+5.复制app到root
+sudo cp -r ~/Desktop/bh_lx07/rpi5b/grayphoto/appTouchAreaTest /media/wenlun/rootfs/app/lx07/
+sudo cp -r ~/Desktop/bh_lx07/rpi5b/grayphoto/appTouchAreaTest /media/wenlun/rootfs1/app/lx07/
+##############################################串口通信，切换灰度值图片##############################################
+
+
+##############################################增加触摸超时##############################################
+在 编译Rpi5b系统，挂载到SD卡 的基础上
+1.复制修改超时时间的文件
+cp -r ~/Desktop/bh_lx07/rpi5b/touchtest_addtimeout/tptouch /media/wenlun/bootfs3
+
+2.复制app
+sudo cp -r ~/Desktop/bh_lx07/rpi5b/touchtest_addtimeout/lx07/appTouchAreaTest /media/wenlun/rootfs1/app/lx07/
+##############################################增加触摸超时##############################################
