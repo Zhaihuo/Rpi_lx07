@@ -11,6 +11,19 @@ cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/
 ##############################################编译软件类型：触摸##############################################
 
 
+##############################################编译软件类型：触摸（增加超时）##############################################
+1.进入文件所在目录，编译
+cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest_addTimeout && /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest_addTimeout/autobuild.sh x86 && ls -l ./build
+cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest_addTimeout && /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest_addTimeout/autobuild.sh arm && ls -l ./build
+
+2.复制文件到Release对应的目录（rpi4b默认是45hz）
+2.1推45hz显示，更改有45hz的图片标识
+cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest_addTimeout/45hz/
+2.2推60hz显示，更改有60hz的图片标识
+cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest_addTimeout/60hz/
+##############################################编译软件类型：触摸（增加超时）##############################################
+
+
 ##############################################编译Rpi4b系统，挂载到SD卡##############################################
 1.用官方工具下载Rpi4 64bit系统
 
@@ -76,8 +89,8 @@ root=/dev/mmcblk0p2 rw rootfstype=ext4 quiet fsck.repair=yes init=/linuxrc rootw
 8.复制app到root
 sudo cp -r ~/Desktop/bh_lx07/rpi4b/grayphoto/appTouchAreaTest /media/wenlun/rootfs1/app/lx07/   //使用ubuntu目录
 
-sudo cp -r /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_GraylevelTest/45hz/ /media/wenlun/rootfs1/app/lx07/   //使用git
-sudo cp -r /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_GraylevelTest/60hz/ /media/wenlun/rootfs1/app/lx07/   //使用git
+sudo cp -r /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_GraylevelTest/45hz/appTouchAreaTest /media/wenlun/rootfs1/app/lx07/   //使用git
+sudo cp -r /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_GraylevelTest/60hz/appTouchAreaTest /media/wenlun/rootfs1/app/lx07/   //使用git
 ##############################################串口通信，切换灰度值图片##############################################
 
 
@@ -89,6 +102,6 @@ cp -r ~/Desktop/bh_lx07/rpi4b/touchtest_addtimeout/tptouch /media/wenlun/bootfs3
 2.复制app
 sudo cp -r ~/Desktop/bh_lx07/rpi4b/touchtest_addtimeout/lx07/appTouchAreaTest /media/wenlun/rootfs1/app/lx07/   //使用ubuntu目录
 
-sudo cp -r /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest_addTimeout/45hz/ /media/wenlun/rootfs1/app/lx07/   //使用git
-sudo cp -r /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest_addTimeout/60hz/ /media/wenlun/rootfs1/app/lx07/   //使用git
+sudo cp -r /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest_addTimeout/45hz/appTouchAreaTest /media/wenlun/rootfs1/app/lx07/   //使用git
+sudo cp -r /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest_addTimeout/60hz/appTouchAreaTest /media/wenlun/rootfs1/app/lx07/   //使用git
 ##############################################增加触摸超时##############################################
