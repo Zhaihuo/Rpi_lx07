@@ -5,9 +5,9 @@ cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest && /home/wenlun/D
 
 2.复制文件到Release对应的目录（rpi4b默认是45hz）
 2.1推45hz显示，更改有45hz的图片标识
-cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest/45hz/
+cp -r build/appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest/45hz/
 2.2推60hz显示，更改有60hz的图片标识
-cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest/60hz/
+cp -r build/appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest/60hz/
 ##############################################编译软件类型：触摸##############################################
 
 
@@ -18,9 +18,9 @@ cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest_addTimeout && /ho
 
 2.复制文件到Release对应的目录（rpi4b默认是45hz）
 2.1推45hz显示，更改有45hz的图片标识
-cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest_addTimeout/45hz/
+cp -r build/appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest_addTimeout/45hz/
 2.2推60hz显示，更改有60hz的图片标识
-cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest_addTimeout/60hz/
+cp -r build/appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest_addTimeout/60hz/
 ##############################################编译软件类型：触摸（增加超时）##############################################
 
 
@@ -69,13 +69,13 @@ sudo cp -r Desktop/bh_lx07/rpi4b/touchtest/platform_device.ko  /media/wenlun/roo
 若是60hz，则需要替换配置文件，使用config_60hz.txt的内容
 
 5.复制生成的文件
-mv -iv appE29_EOLTest appTouchAreaTest && cp -r appTouchAreaTest ~/Desktop/bh_lx07/rpi4b/grayphoto/     //使用ubuntu目录
+cd build && mv -iv appE29_EOLTest appTouchAreaTest && cp -r appTouchAreaTest ~/Desktop/bh_lx07/rpi4b/grayphoto/     //使用ubuntu目录
 
 若是45hz：  //使用git
-cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_GraylevelTest/45hz/
+cp -r build/appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_GraylevelTest/45hz/
 
 若是60hz：  //使用git
-cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_GraylevelTest/60hz/
+cp -r build/appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_GraylevelTest/60hz/
 
 6.复制app.sh
 sudo cp -r ~/Desktop/bh_lx07/rpi4b/grayphoto/app.sh  /media/wenlun/rootfs1/app

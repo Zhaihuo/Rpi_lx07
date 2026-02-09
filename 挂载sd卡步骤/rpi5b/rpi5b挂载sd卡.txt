@@ -4,7 +4,7 @@ cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest && /home/wenlun/D
 cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest && /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest/autobuild.sh arm && ls -l ./build
 
 2.复制文件到Release对应的目录，推60hz显示（rpi5b只能显示60hz），更改有60hz的图片标识
-cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi5b/Touch_TpTest/60hz/
+cp -r build/appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi5b/Touch_TpTest/
 ##############################################编译软件类型：触摸##############################################
 
 
@@ -14,7 +14,7 @@ cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest_addTimeout && /ho
 cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest_addTimeout && /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest_addTimeout/autobuild.sh arm && ls -l ./build
 
 2.复制文件到Release对应的目录，推60hz显示（rpi5b只能显示60hz），更改有60hz的图片标识
-cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi5b/Touch_TpTest_addTimeout/60hz/
+cp -r build/appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi5b/Touch_TpTest_addTimeout/
 ##############################################编译软件类型：触摸（增加超时）##############################################
 
 
@@ -50,7 +50,7 @@ cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_GraylevelTest && /home/w
 sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/platform_device.ko  /media/wenlun/rootfs1/app
 
 4.复制生成的文件
-cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi5b/Touch_GraylevelTest/
+cp -r build/appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi5b/Touch_GraylevelTest/
 
 4.替换cmeline.txt
 console=serial0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 quiet fsck.repair=yes init=/linuxrc rootwait
