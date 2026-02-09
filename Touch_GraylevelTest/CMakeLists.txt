@@ -8,12 +8,12 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Quick QuickControls2 Widgets)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
-qt_add_executable(appE29_EOLTest
+qt_add_executable(appTouchAreaTest
     main.cpp
     # uart.cpp
 )
 
-qt_add_qml_module(appE29_EOLTest
+qt_add_qml_module(appTouchAreaTest
     URI E29_EOLTest
     VERSION 1.0
     QML_FILES Main.qml
@@ -52,7 +52,7 @@ qt_add_qml_module(appE29_EOLTest
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
-set_target_properties(appE29_EOLTest PROPERTIES
+set_target_properties(appTouchAreaTest PROPERTIES
 #    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appTouchAreaTest
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -60,14 +60,14 @@ set_target_properties(appE29_EOLTest PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-target_link_libraries(appE29_EOLTest
+target_link_libraries(appTouchAreaTest
     PRIVATE Qt6::Quick
     Qt6::QuickControls2
     Qt6::Widgets
 )
 
 include(GNUInstallDirs)
-install(TARGETS appE29_EOLTest
+install(TARGETS appTouchAreaTest
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}

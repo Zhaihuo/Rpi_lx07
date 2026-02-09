@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    // QString configPath = "/media/wenlun/thinkplus/app/Prototype/TouchAreaTest_4.0_Touch_addtimeout/timeout.ini";//test
-    QString configPath = "/boot/firmware/tptouch/timeout.ini";
+    // QString configPath = "/home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest/timeout.ini";//test
+    QString configPath = "/boot/firmware/tptouch/timeout.ini";//bootfs
     // QString configPath = "/app/tptouch/timeout.ini";//rootfs
     TpTimeOut *config = new TpTimeOut(configPath, &app);
 
