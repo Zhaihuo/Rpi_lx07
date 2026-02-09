@@ -1,0 +1,37 @@
+git status查看状态
+
+1.拉取文件：
+git pull
+
+2.上传文件
+
+2.1添加所有的变更：
+git add .
+
+2.2添加提交信息：
+git commit -m "你的提交信息，清晰描述修改内容"
+
+2.3先拉取：
+git pull origin main
+
+2.4推送代码到远程分支：
+git push origin main
+
+3.提交后发现漏改文件
+
+3.1先把漏改的文件加入暂存区
+git add 漏改的文件.txt
+
+3.2补充到上一次commit（不会新增commit记录）
+git commit --amend --no-edit
+# --no-edit 表示不修改上一次的提交信息，如需修改可去掉该参数
+
+4.拉取时出现冲突
+
+4.1打开冲突文件（里面会有 <<<<<<< HEAD ======= >>>>>>> 分支名 标记冲突内容），手动修改保留需要的内容，删除冲突标记
+
+4.2重新添加并提交：
+
+git add 冲突文件.txt
+git commit -m "解决分支冲突，合并配置文件"
+git push origin main
