@@ -39,17 +39,15 @@ Rectangle {
     }
     // 场景2：界面隐藏/显示 监听
     onVisibleChanged: {
-    if (!visible) {
-        resetAllData()
-        timeoutTimer.stop()           // ← 页面隐藏时停止计时
-        console.log("🔄 界面隐藏，数据清空 + 超时计时器已停止")
-    } else {
-        // 再次进入界面
-        cvs.requestPaint()
-        timeoutTimer.restart()        // ← 页面可见时重启计时（从头开始）
-        console.log("🔄 再次进入界面，画布重载 + 超时计时器已重启 (" + TpTimeOut.tpTimeout + "秒)")
+        if(!visible) {
+            resetAllData() // 离开必清+必刷新
+            console.log("🔄 界面隐藏，数据清空+画布刷新完成！")
+        } else {
+            // 再次进入界面 → 强制重绘画布，视觉清零
+            cvs.requestPaint()
+            console.log("🔄 再次进入界面，画布重载刷新完成！")
+        }
     }
-}
 
     // ========== 统一重置函数【清数据+强制刷新画布】 ==========
     function initAllData() {
@@ -69,10 +67,6 @@ Rectangle {
         cvs.getContext("2d").clearRect(0,0,cvs.width,cvs.height);
         // ✅ 新增：重置时关闭校验开关，彻底屏蔽校验逻辑
         isCheckEnable = false;
-
-        timeoutTimer.stop()          // ← 新增：重置时停止超时计时器
-
-        timeoutOverlay.closeOverlay()
     }
 
     Canvas{
@@ -404,87 +398,5 @@ Rectangle {
                 console.log("🔄 手动点击重置，数据清空+画布刷新完成！")
             } 
         }
-    }
-
-    Rectangle {
-        id: timeoutOverlay
-        anchors.fill: parent
-
-        // color: "#30ffcccc"           // 浅红半透（可调整透明度，例如 #40ffcccc 更明显一点）
-        // 选项1：中等深浅红（推荐，最平衡）
-        // color: "#60ff9999"           // 透明度约38%，红色更明显
-        // 选项2：再深一点（警示感更强）    
-        color: "#80ff6666"           // 透明度约50%，红色很醒目
-        // 选项3：接近半透深红（如果想很严肃）
-        // color: "#a0ff4444"           // 透明度约63%，内容仍可看清但压迫感强
-
-        z: 1500
-        visible: false
-        opacity: 0
-
-        function closeOverlay() {
-            timeoutOverlay.visible = false
-            timeoutOverlay.opacity  = 0
-        }
-
-        // 统一的点击处理：点击任何地方都关闭整个 overlay
-        MouseArea {
-            anchors.fill: parent
-            acceptedButtons: Qt.LeftButton | Qt.RightButton  // 左右键都可关闭（可选）
-            onClicked: {
-                // timeoutOverlay.visible = false
-                isClicked = true
-            }
-            // 可选：防止事件继续向下传播（如果下面还有其他交互）
-            // propagateComposedEvents: false
-        }
-
-        // 居中的提示框（不再单独放 MouseArea）
-        Rectangle {
-            id: innerPopup
-            anchors.centerIn: parent
-            width: Math.min(parent.width * 0.75, 420)
-            height: 180
-            color: "#ffdddd"            // 浅红底
-            border.color: "#e63946"
-            border.width: 4
-            radius: 16
-
-            Text {
-                anchors.centerIn: parent
-                text: "触摸测试超过 " + TpTimeOut.tpTimeout + " 秒！"
-                color: "black"
-                font.pixelSize: 38
-                font.bold: true
-                font.weight: Font.Black
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.WordWrap
-            }
-        }
-
-        // 淡入动画
-        Behavior on opacity {
-            NumberAnimation { duration: 300 }
-        }
-    }
-
-    Timer {
-        id: timeoutTimer
-        interval: TpTimeOut.tpTimeout * 1000
-        running: false
-        repeat: false
-
-        onTriggered: {
-            console.log("timeout " + TpTimeOut.tpTimeout + "s")
-
-            // 显示全屏浅红 + 提示框
-            timeoutOverlay.opacity = 1
-            timeoutOverlay.visible = true
-        }
-    }
-
-    StackView.onActivated: {
-        timeoutTimer.restart()
     }
 }
