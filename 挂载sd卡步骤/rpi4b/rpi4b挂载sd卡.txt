@@ -5,7 +5,7 @@ cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest && /home/wenlun/D
 cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest && /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_TpTest/autobuild.sh arm && ls -l ./build
 
 2.复制文件到Release对应的目录
-cp -r appTouchAreaTest 
+cp -r appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_TpTest/60hz/
 
 
 
