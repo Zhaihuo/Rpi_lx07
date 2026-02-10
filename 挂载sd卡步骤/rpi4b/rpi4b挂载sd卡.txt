@@ -61,8 +61,9 @@ cd /home/wenlun/rpi4b/app/lx07_GrayLevel/E29_EOLTest && /home/wenlun/rpi4b/app/l
 cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_GraylevelTest && /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_GraylevelTest/autobuild.sh x86 && ls -l ./build
 cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_GraylevelTest && /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_GraylevelTest/autobuild.sh arm && ls -l ./build   //使用git
 
-3.复制驱动
-sudo cp -r Desktop/bh_lx07/rpi4b/touchtest/platform_device.ko  /media/wenlun/rootfs1/app
+3.复制app.sh lx07 platform_device.ko文件到sd卡    首次复制
+sudo cp -r Desktop/bh_lx07/rpi4b/touchtest/app.sh  /media/wenlun/rootfs/app  && sudo cp -r Desktop/bh_lx07/rpi4b/touchtest/lx07 /media/wenlun/rootfs/app/lx07  && sudo cp -r Desktop/bh_lx07/rpi4b/touchtest/platform_device.ko  /media/wenlun/rootfs/app
+sudo cp -r Desktop/bh_lx07/rpi4b/touchtest/app.sh  /media/wenlun/rootfs1/app  && sudo cp -r Desktop/bh_lx07/rpi4b/touchtest/lx07 /media/wenlun/rootfs1/app/lx07  && sudo cp -r Desktop/bh_lx07/rpi4b/touchtest/platform_device.ko  /media/wenlun/rootfs1/app
 
 4.确认是否替换config.txt文件
 若是45hz，则不用替换config.txt文件

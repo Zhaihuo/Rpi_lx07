@@ -46,11 +46,11 @@ sudo sync
 cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_GraylevelTest && /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_GraylevelTest/autobuild.sh x86 && ls -l ./build
 cd /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_GraylevelTest && /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Touch_GraylevelTest/autobuild.sh arm && ls -l ./build
 
-3.复制驱动
-sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/platform_device.ko  /media/wenlun/rootfs1/app
-
-4.复制生成的文件
 cp -r build/appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi5b/Touch_GraylevelTest/
+
+3.复制app.sh lx07 platform_device.ko文件到sd卡    首次复制
+sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/app.sh  /media/wenlun/rootfs/app  && sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/lx07 /media/wenlun/rootfs/app/lx07  && sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/platform_device.ko  /media/wenlun/rootfs/app
+sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/app.sh  /media/wenlun/rootfs1/app  && sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/lx07 /media/wenlun/rootfs1/app/lx07  && sudo cp -r Desktop/bh_lx07/rpi5b/touchtest/platform_device.ko  /media/wenlun/rootfs1/app
 
 4.替换cmeline.txt
 console=serial0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 quiet fsck.repair=yes init=/linuxrc rootwait
