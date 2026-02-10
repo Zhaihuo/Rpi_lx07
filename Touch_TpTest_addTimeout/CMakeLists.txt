@@ -40,7 +40,7 @@ qt_add_qml_module(appTouchAreaTest
     #RESOURCES images/huijie/pic_huijie_040.png images/huijie/pic_huijie_041.png images/huijie/pic_huijie_042.png images/huijie/pic_huijie_043.png
     RESOURCES images/pic05.png
     SOURCES cppdata.h cppdata.cpp
-    RESOURCES images/airdark.png images/airlight.png images/closedark.png images/closelight.png images/music.png
+    RESOURCES images/60hz/60hz_1.png images/60hz/60hz_2.png images/45hz/45hz_1.png images/45hz/45hz_2.png images/closedark.png images/closelight.png images/music.png
     RESOURCES
     RESOURCES images/TouchBG.png
 )

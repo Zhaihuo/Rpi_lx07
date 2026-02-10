@@ -19,7 +19,8 @@ Window {
         DefaultPage {
             width: parent.width
             height: parent.height
-            source: "images/airdark.png"
+            source: "images/45hz/45hz_1.png"
+            // source: "images/60hz/60hz_1.png"
             visible: if (pageIndex == 0)
                          return true
                      else
@@ -28,7 +29,8 @@ Window {
         DefaultPage {
             width: parent.width
             height: parent.height
-            source: "images/airlight.png"
+            source: "images/45hz/45hz_2.png"
+            // source: "images/60hz/60hz_2.png"
             visible: if (pageIndex == 1)
                          return true
                      else
