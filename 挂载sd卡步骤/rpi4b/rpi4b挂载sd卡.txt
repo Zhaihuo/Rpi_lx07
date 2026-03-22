@@ -30,6 +30,8 @@ cp -r build/appTouchAreaTest /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/Rele
 2.删除rootfs和bootfs目录下的文件，先确定当前路径，pwd
 sudo rm -rf /media/wenlun/bootfs3/* && sudo rm -rf /media/wenlun/rootfs/*
 sudo rm -rf /media/wenlun/bootfs3/* && sudo rm -rf /media/wenlun/rootfs1/*
+sudo rm -rf /media/wenlun/bootfs4/* && sudo rm -rf /media/wenlun/rootfs1/*
+
 
 3.编译系统，先确定识别的SD卡是不是sdb，ls /dev/sdb*，确认后开始编译系统
 cd rpi4b/
