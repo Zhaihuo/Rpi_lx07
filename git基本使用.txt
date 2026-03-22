@@ -45,3 +45,13 @@ export all_proxy=socks5://192.168.0.101:7891
 
 # 验证是否生效
 curl -I https://github.com
+
+#只拉最新的
+git pull --depth 1
+
+完全用远程代码覆盖本地（本地代码可丢弃时）
+1.先 fetch 远程最新代码
+git fetch origin main
+
+2.强制重置本地 main 分支到远程 main
+git reset --hard origin/main
