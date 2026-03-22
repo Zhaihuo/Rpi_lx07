@@ -35,3 +35,13 @@ git commit --amend --no-edit
 git add 冲突文件.txt
 git commit -m "解决分支冲突，合并配置文件"
 git push origin main
+
+
+配置代理：  192.168.0.101是主机的ip
+# 配置 HTTP/HTTPS 代理
+export http_proxy=http://192.168.0.101:7890
+export https_proxy=http://192.168.0.101:7890
+export all_proxy=socks5://192.168.0.101:7891
+
+# 验证是否生效
+curl -I https://github.com
