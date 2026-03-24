@@ -101,6 +101,7 @@ sudo cp -r /home/wenlun/Desktop/bh_lx07/git_code/Rpi_lx07/ReleaseSw/rpi4b/Touch_
 在 ###编译Rpi4b系统，挂载到SD卡### 的基础上
 1.复制修改超时时间的文件
 cp -r ~/Desktop/bh_lx07/rpi4b/touchtest_addtimeout/tptouch /media/wenlun/bootfs3
+cp -r ~/Desktop/bh_lx07/rpi4b/touchtest_addtimeout/tptouch /media/wenlun/bootfs4
 
 2.复制app
 sudo cp -r ~/Desktop/bh_lx07/rpi4b/touchtest_addtimeout/lx07/appTouchAreaTest /media/wenlun/rootfs1/app/lx07/   //使用ubuntu目录
