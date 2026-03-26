@@ -1,0 +1,32 @@
+####################增加固件####################
+1.复制固件到对应的文件夹
+sudo cp -r ~/Desktop/rpi4b_wifi/brcm /media/wenlun/rootfs1/lib/firmware/
+####################增加固件####################
+
+####################在串口中开启wifi####################
+1.更新模块索引
+depmod -a
+
+2.加载
+modprobe brcmfmac
+
+3.配置wifi
+
+#生成WiFi配置文件
+wpa_passphrase "bhdisplay" "bhdisplay1234" > /etc/wpa_supplicant.conf
+
+#连接WiFi
+wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf -B
+
+#获取IP地址（关键）
+dhclient wlan0
+
+#查看是否连上
+ip addr show wlan0
+
+# 测试网络
+ping www.baidu.com
+####################在串口中开启wifi####################
+
+#下载vim
+apt update && apt install vim -y
