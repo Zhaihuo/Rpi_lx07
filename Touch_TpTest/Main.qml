@@ -5,14 +5,24 @@ import QtQuick.Controls
 import CppData
 
 Window {
-    property bool isExit: false
-    property bool isClicked: false
-    property int pageIndex: 0
-    property int getValue: 0
     id: mainWindow
     width: 1280
     height: 412
     visible: true
+
+    readonly property bool defaultonephotoflg: true //true:默认显示1张图  false:默认显示2张图
+
+    property bool isExit: false
+    property bool isClicked: false
+    property int pageIndex: 0
+    property int getValue: 0
+
+    Component.onCompleted: {
+    if (defaultonephotoflg && (pageIndex == 0)) {
+        pageIndex++;
+        }
+    }
+
     Item {
         width: mainWindow.width
         height: 412
@@ -93,7 +103,15 @@ Window {
                 pageIndex++
                 if (pageIndex >= 5)
                 {
-                    pageIndex = 0
+                    if(defaultonephotoflg)
+                    {
+                        pageIndex = 1
+                    }
+                    else
+                    {
+                        pageIndex = 0
+                    }
+
                     isClicked = true
                     calibrationPage.calibrationNum = 0
                     colorPage.clickNum = 0
@@ -121,7 +139,18 @@ Window {
             paintPage.canvas.requestPaint()
         }
         else
-            cpp.qmlValue(false)
+        {
+            if(defaultonephotoflg && (1 == pageIndex))
+            {
+                cpp.qmlValue(true)
+                paintPage.canvas.context.clearRect(0,0,paintPage.canvas.width,paintPage.canvas.height)
+                paintPage.canvas.requestPaint()
+            }
+            else
+            {
+                cpp.qmlValue(false)
+            }
+        }
     }
 
     Timer {

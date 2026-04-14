@@ -34,10 +34,10 @@ Image {
                 if (velocity < 0) {
                     imgNum++
                     clickNum++
-                    if (imgNum > 5) {
+                    if (imgNum > 6) {
                         imgNum = 0
                     }
-                    if(imgNum >= 5)
+                    if(imgNum >= 6)
                     {
                         isClicked = true
                     }
@@ -48,7 +48,7 @@ Image {
                 //else if (velocity > 0) {
                 //    imgNum--
                 //    if (imgNum < 0) {
-                //        imgNum = 5
+                //        imgNum = 6
                 //    }
                 //    root.source = "images/pic0" + imgNum + ".png"
                 //    //root.source = "images/huijie/pic_huijie_" + imgNum.toString().padStart(3, "0") + ".png"

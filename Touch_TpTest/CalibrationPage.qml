@@ -16,8 +16,11 @@ Rectangle {
         onClicked: {
             if (((mouseX < img.x + img.width*1.5) && (mouseX > img.x-img.width/2))
                     && ((mouseY < img.y + img.height*1.5) && (mouseY > img.y-img.height/2))) {
-                img.x = (parent.width - img.width) * Math.random()
-                img.y = (parent.height - img.height) * Math.random()
+
+                const m = 15
+
+                img.x = (parent.width - img.width - m*2) * Math.random()
+                img.y = (parent.height - img.height - m*2) * Math.random()
                 calibrationNum ++
             }
             if(calibrationNum>=5)
