@@ -131,9 +131,16 @@ void recvdata(uint8_t u8RecvData)
 
             if((r_buf[0] == 0xAA) && (r_buf[3] == 0x55))
             {
-                if(r_buf[1] >= 1 && r_buf[1] <= 4)//R G B flicker
+                if(r_buf[1] >= 1 && r_buf[1] <= 5)//R G B flicker flicker_longteng
                 {
-                    u16PageValue = r_buf[1];
+                    if(5 == r_buf[1])//flicker_longteng
+                    {
+                        u16PageValue = 261;
+                    }
+                    else
+                    {
+                        u16PageValue = r_buf[1];
+                    }
 
                     write_serial(r_buf, 4);
                     memset(r_buf, 0, sizeof(r_buf));

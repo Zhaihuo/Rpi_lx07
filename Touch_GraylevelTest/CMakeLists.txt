@@ -20,7 +20,7 @@ qt_add_qml_module(appTouchAreaTest
     QML_FILES DefaultPage.qml
     SOURCES cppdata.h cppdata.cpp uart.cpp
 
-    RESOURCES images/test000.png images/test004.bmp
+    RESOURCES images/test000.png images/test004.bmp images/test261.bmp
     RESOURCES images/test001.png images/test002.png images/test003.png images/test004.png images/test005.png images/test006.png images/test007.png images/test008.png images/test009.png images/test010.png
     RESOURCES images/test011.png images/test012.png images/test013.png images/test014.png images/test015.png images/test016.png images/test017.png images/test018.png images/test019.png images/test020.png
     RESOURCES images/test021.png images/test022.png images/test023.png images/test024.png images/test025.png images/test026.png images/test027.png images/test028.png images/test029.png images/test030.png

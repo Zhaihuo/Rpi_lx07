@@ -9,12 +9,12 @@ Window {
     height: 412
     visible: true
     property int pageIndex: 0
-    readonly property int totalImages: 261 // 总共260张
+    readonly property int totalImages: 262 // 总共260张
     // 根据序号生成图片路径的函数（根据你的实际文件名修改）
     function getImageSource(index) {
     // 假设文件名是 test001.png ~ test260.png
 
-    if(index == 4)
+    if((index == 4) || (index == 261))
     {
         return "images/test" + (index).toString().padStart(3, '0') + ".bmp";
     }
@@ -31,7 +31,7 @@ Window {
 Item {
     anchors.fill: parent
     Repeater {
-    model: totalImages // 0 ~ 260
+    model: totalImages // 0 ~ 261
     DefaultPage {
     width: parent.width
     height: parent.height
